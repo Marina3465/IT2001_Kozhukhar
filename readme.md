@@ -18,3 +18,5 @@
 ![I love dogs!](https://damion.club/uploads/posts/2022-01/1642803010_17-damion-club-p-milie-shchenki-chikhuakhua-17.jpg "Lovely dogs")
  
 Вот две прелестные собачки, они мне очень понравились:)
+
+<!-- Принято. Читаем и оформляем коммиты правильно -->
