@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-UrlLauncher.launch("tel://784")
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -32,10 +33,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 26; //создание счетчика
-  var _color_button = Colors.grey[500];
+  int _counter = 26; //создание счетчика для лайков
+  var _color_button = Colors.grey[500]; //переменная для цвета кнопки лайка
+  String url = '89676656512'; //пременная с номером телефона
 
+  _makingPhoneCall() async {  //функция для нажатия на кнопку "позвонить"
+    try { //попытка выполнить команду
+      await launch('tel:$url'); //запуск приложения для набора номера
+    } catch (e) { //исключение
+      throw 'Could not launch $url'; //вызов исключения
+    }
+  }
 
+  void _shareContent() {
+    Share.share('Общежитие №20. Краснодар, ул. Калинина, 13. Телефон: $url');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,17 +95,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   onPressed: () => {
                     setState(() {
-                      if (_color_button == Colors.red[800]){
-                        _counter --;
+                      if (_color_button == Colors.red[800]) {
+                        _counter--;
                         _color_button = Colors.grey[500];
-                      } else{
+                      } else {
                         _color_button = Colors.red[800];
                         _counter++;
                       }
                     })
                   },
                 ),
-                Text( //выводит значение инкремента
+                Text(
+                  //выводит значение инкремента
                   '$_counter',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
@@ -103,12 +116,53 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
-                  onPressed: () => launch(),
-                  child: child)
+              TextButton.icon(
+                onPressed: _makingPhoneCall,
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.call,
+                      size: 30,
+                    ),
+                    Text('ПОЗВОНИТЬ'),
+                  ],
+                ),
+                label: Text(''),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  launch(
+                      'https://www.google.com/maps/dir//%D0%9E%D0%B1%D1%89%D0%B5%D0%B6%D0%B8%D1%82%D0%B8%D0%B5+20,+%D0%A3%D0%BB%D0%B8%D1%86%D0%B0+%D0%9A%D0%B0%D0%BB%D0%B8%D0%BD%D0%B8%D0%BD%D0%B0+13,+%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81+20,+%D1%83%D0%BB.+%D0%9A%D0%B0%D0%BB%D0%B8%D0%BD%D0%B8%D0%BD%D0%B0+13,+13%D0%BA20,+%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B4%D0%B0%D1%80,+%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B4%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9+%D0%BA%D1%80%D0%B0%D0%B9,+350044/@45.050583,38.9197903,17z/data=!3m1!4b1!4m17!1m7!3m6!1s0x40f04f3737bffbff:0x384537772b6bf12d!2z0J7QsdGJ0LXQttC40YLQuNC1IDIw!8m2!3d45.0502933!4d38.9207626!16s%2Fg%2F11bwqqb83z!4m8!1m1!4e1!1m5!1m1!1s0x40f04f3737bffbff:0x384537772b6bf12d!2m2!1d38.9208175!2d45.0502591');
+                },
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.near_me,
+                      size: 30,
+                    ),
+                    Text('МАРШРУТ'),
+                  ],
+                ),
+                label: Text(''),
+              ),
+              TextButton.icon(
+                onPressed: _shareContent,
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.share,
+                      size: 30,
+                    ),
+                    Text('ПОДЕЛИТЬСЯ'),
+                  ],
+                ),
+                label: Text(''),
+              ),
+
               //_buildButtonColumn(color, Icons.call, 'ПОЗВОНИТЬ'),
-              _buildButtonColumn(color, Icons.near_me, 'МАРШРУТ'),
-              _buildButtonColumn(color, Icons.share, 'ПОДЕЛИТЬСЯ'),
+              //_buildButtonColumn(color, Icons.near_me, 'МАРШРУТ')
+
+              //buildButtonColumn(color, Icons.share, 'ПОДЕЛИТЬСЯ'),
             ],
           ),
           const Padding(
