@@ -1,19 +1,26 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';//связь с главным окном
 
 class Infinity extends StatelessWidget {
+  //отстраивание экрана (интерфейс)
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Список элементов',
+      title: 'Список элементов', //заголовок окна
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        //тема приложения
+        primarySwatch: Colors.green, //цвет панели сверху
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: const Text('Список элементов'),
+            //верхняя строка с заголовком
+            title: const Text('Список элементов'), //текст заголовка
           ),
           body: ListView.builder(itemBuilder: (context, index) {
-            return Text('строка $index');
+            //создание прокручиваемого списка
+            //itemBuilder обязательный параметр для конструктора
+            // ListView.builder(), в качестве значения он принимает функцию, которая возвращает виджет-элемент.
+            return Text('строка $index'); //возвращает текстовый виджет со
+            //значением index.
           })),
     );
   }
