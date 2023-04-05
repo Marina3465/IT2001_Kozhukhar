@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="feature-url_launcher_android">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/LAB_4/build/url_launcher_android/intermediates/merged_java_res/debug/feature-url_launcher_android.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
