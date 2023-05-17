@@ -17,7 +17,7 @@ abstract class ICoffee {
   set cash(int amount);
 }
 
-class Coffee extends ICoffee {
+class Coffee implements ICoffee {
   //класс для кофе
 
   int _coffeeBeans = 20; //поля

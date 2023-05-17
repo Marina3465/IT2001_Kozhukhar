@@ -125,11 +125,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: Text('Латте 160p')),
             const Text(
-              //простринство для разделения
+              //пространство для разделения
               '',
             ),
             Text(
               //сообщение о приготовлении кофе
+
               '$mess',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
